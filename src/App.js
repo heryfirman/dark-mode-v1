@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
+const getThemeLocalStorage = () => {
+  let theme = 'light-theme';
+
+  if(localStorage.getItem('theme')) {
+    theme = localStorage.getItem('theme');
+  }
+  return theme;
+}
 
 
 function App() {
-  const [theme, setTheme] = useState('light-theme');
+  const [theme, setTheme] = useState(getThemeLocalStorage());
 
   const toogleSwitchTheme = () => {
     if(theme === 'light-theme') {
@@ -16,6 +24,7 @@ function App() {
 
   useEffect(() => {
     document.documentElement.classList = theme;
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   return (
