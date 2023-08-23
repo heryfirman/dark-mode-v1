@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
+
+
 function App() {
+  const [theme, setTheme] = useState('light-theme');
+
+  const toogleSwitchTheme = () => {
+    if(theme === 'light-theme') {
+      setTheme('dark-theme');
+    } else {
+      setTheme('light-theme');
+    }
+  }
+
+  useEffect(() => {
+    document.documentElement.classList = theme;
+  }, [theme]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <main>
+      <header>
+        <nav className='navigation'>
+          <h1>Exercise of Dark-Mode..!</h1>
+          <button className='btn' onClick={toogleSwitchTheme}>Toogle</button>
+        </nav>
       </header>
-    </div>
+    </main>
   );
 }
 
